@@ -9,7 +9,7 @@ cmake_minimum_required(VERSION 3.4.1)
 # or SHARED, and provides the relative paths to its source code.
 # You can define multiple libraries, and CMake builds them for you.
 # Gradle automatically packages shared libraries with your APK.
-
+add_definitions(-DNDEBUG)
 
 set(common_sources
         src/main/cpp/ijkmedia/ijkj4a/j4a/j4a_allclasses.c
