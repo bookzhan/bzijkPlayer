@@ -194,11 +194,9 @@ endif ()
 # you want to add. CMake verifies that the library exists before
 # completing its build.
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/main/jniLibs/${ANDROID_ABI}/libijkffmpeg.so ${CMAKE_CURRENT_SOURCE_DIR}/.externalNativeBuild/cmake/debug/${ANDROID_ABI}/libijkffmpeg.so COPYONLY)
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/main/jniLibs/${ANDROID_ABI}/libijksdl.so ${CMAKE_CURRENT_SOURCE_DIR}/.externalNativeBuild/cmake/debug/${ANDROID_ABI}/libijksdl.so COPYONLY)
 
 #release
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/main/jniLibs/${ANDROID_ABI}/libijkffmpeg.so ${CMAKE_CURRENT_SOURCE_DIR}/.externalNativeBuild/cmake/release/${ANDROID_ABI}/libijkffmpeg.so COPYONLY)
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/main/jniLibs/${ANDROID_ABI}/libijksdl.so ${CMAKE_CURRENT_SOURCE_DIR}/.externalNativeBuild/cmake/release/${ANDROID_ABI}/libijksdl.so COPYONLY)
 
 
 #ffmpeg
@@ -249,4 +247,4 @@ target_link_libraries( # Specifies the target library.
 
         # Links the target library to the log library
         # included in the NDK.
-        ijkffmpeg-lib ijksdl-lib ${log-lib} ${m-lib} ${z-lib} ${android-lib} ${EGL-lib} ${GLES-lib} ${jnigraphics-lib} ${OpenSLES-lib})
+        ijkffmpeg-lib ${log-lib} ${m-lib} ${z-lib} ${android-lib} ${EGL-lib} ${GLES-lib} ${jnigraphics-lib} ${OpenSLES-lib})
