@@ -193,26 +193,19 @@ endif ()
 # default, you only need to specify the name of the public NDK library
 # you want to add. CMake verifies that the library exists before
 # completing its build.
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/main/jniLibs/${ANDROID_ABI}/libijkffmpeg.so ${CMAKE_CURRENT_SOURCE_DIR}/.externalNativeBuild/cmake/debug/${ANDROID_ABI}/libijkffmpeg.so COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/main/jniLibs/${ANDROID_ABI}/libbzffmpeg.so ${CMAKE_CURRENT_SOURCE_DIR}/.externalNativeBuild/cmake/debug/${ANDROID_ABI}/libbzffmpeg.so COPYONLY)
 
 #release
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/main/jniLibs/${ANDROID_ABI}/libijkffmpeg.so ${CMAKE_CURRENT_SOURCE_DIR}/.externalNativeBuild/cmake/release/${ANDROID_ABI}/libijkffmpeg.so COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/main/jniLibs/${ANDROID_ABI}/libbzffmpeg.so ${CMAKE_CURRENT_SOURCE_DIR}/.externalNativeBuild/cmake/release/${ANDROID_ABI}/libbzffmpeg.so COPYONLY)
 
 
 #ffmpeg
-add_library(ijkffmpeg-lib
+add_library(ffmpeg-lib
         SHARED
         IMPORTED)
-set_target_properties(ijkffmpeg-lib
+set_target_properties(ffmpeg-lib
         PROPERTIES IMPORTED_LOCATION
-        libijkffmpeg.so)
-#sdl
-add_library(ijksdl-lib
-        SHARED
-        IMPORTED)
-set_target_properties(ijksdl-lib
-        PROPERTIES IMPORTED_LOCATION
-        libijksdl.so)
+        libbzffmpeg.so)
 
 find_library(log-lib log)
 find_library(m-lib m)
@@ -247,4 +240,4 @@ target_link_libraries( # Specifies the target library.
 
         # Links the target library to the log library
         # included in the NDK.
-        ijkffmpeg-lib ${log-lib} ${m-lib} ${z-lib} ${android-lib} ${EGL-lib} ${GLES-lib} ${jnigraphics-lib} ${OpenSLES-lib})
+        ffmpeg-lib ${log-lib} ${m-lib} ${z-lib} ${android-lib} ${EGL-lib} ${GLES-lib} ${jnigraphics-lib} ${OpenSLES-lib})
