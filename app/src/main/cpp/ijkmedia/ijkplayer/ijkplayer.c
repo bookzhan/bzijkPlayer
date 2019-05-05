@@ -39,6 +39,8 @@
 #define MPST_RET_IF_EQ(real, expected) \
     MPST_RET_IF_EQ_INT(real, expected, EIJK_INVALID_STATE)
 
+
+//不管从哪个线程过来都加锁,保证线程安全,这个锁是跟着对象走的
 inline static void ijkmp_destroy(IjkMediaPlayer *mp)
 {
     if (!mp)
@@ -123,7 +125,7 @@ IjkMediaPlayer *ijkmp_create(int (*msg_loop)(void*))
     mp->ffplayer = ffp_create();
     if (!mp->ffplayer)
         goto fail;
-
+    //ijkplayer_jni.c 里面的 message_loop_n, message_loop_n最后又调用了当前文件的 ijkmp_get_msg
     mp->msg_loop = msg_loop;
 
     ijkmp_inc_ref(mp);
@@ -345,6 +347,7 @@ static int ijkmp_set_data_source_l(IjkMediaPlayer *mp, const char *url)
     assert(url);
 
     // MPST_RET_IF_EQ(mp->mp_state, MP_STATE_IDLE);
+    //检查状态,如果是这些状态的话就直接返回
     MPST_RET_IF_EQ(mp->mp_state, MP_STATE_INITIALIZED);
     MPST_RET_IF_EQ(mp->mp_state, MP_STATE_ASYNC_PREPARING);
     MPST_RET_IF_EQ(mp->mp_state, MP_STATE_PREPARED);
@@ -356,6 +359,7 @@ static int ijkmp_set_data_source_l(IjkMediaPlayer *mp, const char *url)
     MPST_RET_IF_EQ(mp->mp_state, MP_STATE_END);
 
     freep((void**)&mp->data_source);
+    //strdup 这个函数以前没有用过,可以很方便的copy字符串,不用再写一堆代码了,最后要free掉
     mp->data_source = strdup(url);
     if (!mp->data_source)
         return EIJK_OUT_OF_MEMORY;
