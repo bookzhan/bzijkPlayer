@@ -35,7 +35,7 @@
 #include "libavutil/log.h"
 #include "libavutil/opt.h"
 #include "libavutil/thread.h"
-#include "libavutil/time.h"
+#include "libavutil/ffmpeg_time.h"
 #include "libavformat/url.h"
 #include <stdint.h>
 

@@ -15,7 +15,7 @@ set(common_sources
         src/main/cpp/ijkmedia/ijkj4a/j4a/j4a_allclasses.c
         src/main/cpp/ijkmedia/ijkj4a/j4a/j4a_base.c
         src/main/cpp/ijkmedia/ijkj4a/j4a/class/android/media/AudioTrack.c
-        src/main/cpp/ijkmedia/ijkj4a/j4a/class/android/media/MediaCodec.c
+        src/main/cpp/ijkmedia/ijkj4a/j4a/class/android/media/ffmpeg_mediacodec.c
         src/main/cpp/ijkmedia/ijkj4a/j4a/class/android/media/MediaFormat.c
         src/main/cpp/ijkmedia/ijkj4a/j4a/class/android/media/PlaybackParams.c
         src/main/cpp/ijkmedia/ijkj4a/j4a/class/android/os/Build.c
