@@ -13,6 +13,11 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    static {
+        //这个库放在外面加载
+        System.loadLibrary("bzffmpeg");
+    }
+
     private static final String TAG = "bz_MainActivity";
 
     // Used to load the 'native-lib' library on application startup.
