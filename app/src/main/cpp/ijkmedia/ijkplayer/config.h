@@ -22,7 +22,13 @@
 #ifndef FFPLAY__CONFIG_H
 #define FFPLAY__CONFIG_H
 
-#include "libffmpeg/config.h"
+#ifdef ARMV7
+#include "ffmpeginclude/armeabi-v7a/ffmpeg/config.h"
+#endif
+
+#ifdef ARMV8
+#include "ffmpeginclude/arm64-v8a/ffmpeg/config.h"
+#endif
 
 // FIXME: merge filter related code and enable it
 // remove these lines to enable avfilter

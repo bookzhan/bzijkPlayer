@@ -172,6 +172,7 @@ set(arm64_v8a_sources
         )
 
 if (${ANDROID_ABI} STREQUAL armeabi-v7a)
+    add_definitions(-DARMV7)
     add_library( # Sets the name of the library.
             ijkplayer
             SHARED
@@ -179,6 +180,7 @@ if (${ANDROID_ABI} STREQUAL armeabi-v7a)
             ${armeabi_v7a_sources}
             )
 else ()
+    add_definitions(-DARMV8)
     add_library( # Sets the name of the library.
             ijkplayer
             SHARED
