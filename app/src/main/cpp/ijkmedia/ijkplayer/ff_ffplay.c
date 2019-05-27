@@ -1412,7 +1412,7 @@ retry:
         }
 display:
         /* display picture */
-        if (!ffp->display_disable && is->force_refresh && is->show_mode == SHOW_MODE_VIDEO && is->pictq.rindex_shown)
+        if (ffp->on_prepared_display||(!ffp->display_disable && is->force_refresh && is->show_mode == SHOW_MODE_VIDEO && is->pictq.rindex_shown))
             video_display2(ffp);
     }
     is->force_refresh = 0;
@@ -3764,7 +3764,7 @@ static int video_refresh_thread(void *arg)
         if (remaining_time > 0.0)
             av_usleep((int)(int64_t)(remaining_time * 1000000.0));
         remaining_time = REFRESH_RATE;
-        if (is->show_mode != SHOW_MODE_NONE && (!is->paused || is->force_refresh))
+        if (ffp->on_prepared_display||(is->show_mode != SHOW_MODE_NONE && (!is->paused || is->force_refresh)))
             video_refresh(ffp, &remaining_time);
     }
 
