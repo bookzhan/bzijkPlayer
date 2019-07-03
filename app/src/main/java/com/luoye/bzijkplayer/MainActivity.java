@@ -9,13 +9,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.ufotosoft.bzffmpeg.activity.BZVideoView2SingleActivity;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     static {
         //这个库放在外面加载
-        System.loadLibrary("bzffmpeg");
+        System.loadLibrary("ijkffmpeg");
     }
 
     private static final String TAG = "bz_MainActivity";
@@ -66,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
     public native String stringFromJNI();
 
     public void test(View view) {
-        startActivity(new Intent(this, IJKPlayerTestActivity.class));
+        startActivity(new Intent(this, BZVideoView2SingleActivity.class));
+//        startActivity(new Intent(this, IJKPlayerTestActivity.class));
     }
 }

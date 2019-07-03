@@ -195,10 +195,10 @@ endif ()
 # default, you only need to specify the name of the public NDK library
 # you want to add. CMake verifies that the library exists before
 # completing its build.
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/main/jniLibs/${ANDROID_ABI}/libbzffmpeg.so ${CMAKE_CURRENT_SOURCE_DIR}/.externalNativeBuild/cmake/debug/${ANDROID_ABI}/libbzffmpeg.so COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/main/jniLibs/${ANDROID_ABI}/libijkffmpeg.so ${CMAKE_CURRENT_SOURCE_DIR}/.externalNativeBuild/cmake/debug/${ANDROID_ABI}/libijkffmpeg.so COPYONLY)
 
 #release
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/main/jniLibs/${ANDROID_ABI}/libbzffmpeg.so ${CMAKE_CURRENT_SOURCE_DIR}/.externalNativeBuild/cmake/release/${ANDROID_ABI}/libbzffmpeg.so COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/main/jniLibs/${ANDROID_ABI}/libijkffmpeg.so ${CMAKE_CURRENT_SOURCE_DIR}/.externalNativeBuild/cmake/release/${ANDROID_ABI}/libijkffmpeg.so COPYONLY)
 
 
 #ffmpeg
@@ -207,7 +207,7 @@ add_library(ffmpeg-lib
         IMPORTED)
 set_target_properties(ffmpeg-lib
         PROPERTIES IMPORTED_LOCATION
-        libbzffmpeg.so)
+        libijkffmpeg.so)
 
 find_library(log-lib log)
 find_library(m-lib m)

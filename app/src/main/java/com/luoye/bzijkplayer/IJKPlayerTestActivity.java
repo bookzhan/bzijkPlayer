@@ -1,6 +1,7 @@
 package com.luoye.bzijkplayer;
 
 import android.graphics.SurfaceTexture;
+import android.media.MediaCodec;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -28,6 +29,7 @@ public class IJKPlayerTestActivity extends AppCompatActivity {
             @Override
             public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int width, int height) {
                 IJKPlayerTestActivity.this.surface = new Surface(surfaceTexture);
+                startPlay(null);
             }
 
             @Override
@@ -58,12 +60,26 @@ public class IJKPlayerTestActivity extends AppCompatActivity {
             ijkMediaPlayer.reset();
         }
         try {
+            ijkMediaPlayer.pause();
+            ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "mediacodec", 1);
+//            ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "render-wait-start", 1);
+//            ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "mediacodec-sync", 1);
+
+//            ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "start-on-prepared", 0);
+
             ijkMediaPlayer.setSurface(surface);
-            ijkMediaPlayer.setDataSource("/sdcard/bzmedia/temp_16.mp4");
+//            ijkMediaPlayer.setDataSource("/sdcard/bzmedia/av_test_1080x1920_16_r0.mp4");
+            ijkMediaPlayer.setDataSource("/sdcard/bzmedia/temp_134.mp4");
             ijkMediaPlayer.setOnPreparedListener(new IMediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(IMediaPlayer iMediaPlayer) {
-                    iMediaPlayer.start();
+                    ijkMediaPlayer.pause();
+                }
+            });
+            ijkMediaPlayer.setOnInfoListener(new IMediaPlayer.OnInfoListener() {
+                @Override
+                public boolean onInfo(IMediaPlayer mp, int what, int extra) {
+                    return false;
                 }
             });
             ijkMediaPlayer.prepareAsync();
@@ -88,5 +104,9 @@ public class IJKPlayerTestActivity extends AppCompatActivity {
             ijkMediaPlayer.stop();
             ijkMediaPlayer.release();
         }
+    }
+
+    public void start(View view) {
+        ijkMediaPlayer.start();
     }
 }
