@@ -29,7 +29,7 @@ public class BZVideoView2SingleActivity extends AppCompatActivity {
         if (null != videoPath) {
             path = videoPath;
         }
-        bz_video_view2.pause();
+//        bz_video_view2.setAutoStartPlay(true);
         bz_video_view2.setDataSource(path);
 
         bz_video_view2.setOnStartRenderListener(new BZVideoView2.OnStartRenderListener() {

@@ -3650,6 +3650,9 @@ static VideoState *stream_open(FFPlayer *ffp, const char *filename, AVInputForma
     is->iformat = iformat;
     is->ytop    = 0;
     is->xleft   = 0;
+    //默认是暂停的
+    is->pause_req = 1;
+    is->paused = 1;
 #if defined(__ANDROID__)
     if (ffp->soundtouch_enable) {
         is->handle = ijk_soundtouch_create();
