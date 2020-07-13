@@ -193,10 +193,7 @@ endif ()
 # default, you only need to specify the name of the public NDK library
 # you want to add. CMake verifies that the library exists before
 # completing its build.
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/main/jniLibs/${ANDROID_ABI}/libijkffmpeg.so ${CMAKE_CURRENT_SOURCE_DIR}/.externalNativeBuild/cmake/debug/${ANDROID_ABI}/libijkffmpeg.so COPYONLY)
-
-#release
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/main/jniLibs/${ANDROID_ABI}/libijkffmpeg.so ${CMAKE_CURRENT_SOURCE_DIR}/.externalNativeBuild/cmake/release/${ANDROID_ABI}/libijkffmpeg.so COPYONLY)
+configure_file(${Project_SOURCE_DIR}/src/main/jniLibs/${ANDROID_ABI}/libijkffmpeg.so ${Project_BINARY_DIR}/libijkffmpeg.so COPYONLY)
 
 
 #ffmpeg
