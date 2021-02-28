@@ -2,12 +2,13 @@ package com.luoye.bzijkplayer;
 
 import android.graphics.SurfaceTexture;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
 
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import tv.danmaku.ijk.media.player.IMediaPlayer;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
