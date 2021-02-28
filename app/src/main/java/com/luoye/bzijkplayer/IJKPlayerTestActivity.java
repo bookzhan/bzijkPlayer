@@ -59,7 +59,7 @@ public class IJKPlayerTestActivity extends AppCompatActivity {
         }
         try {
             ijkMediaPlayer.setSurface(surface);
-            ijkMediaPlayer.setDataSource("/sdcard/bzmedia/temp_16.mp4");
+            ijkMediaPlayer.setDataSource("/sdcard/bzmedia/testvideo.mp4");
             ijkMediaPlayer.setOnPreparedListener(new IMediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(IMediaPlayer iMediaPlayer) {
