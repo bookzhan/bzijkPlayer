@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
+import android.widget.SeekBar;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,11 +20,14 @@ public class IJKPlayerTestActivity extends AppCompatActivity {
     private TextureView texture_view;
     private Surface surface;
     private IjkMediaPlayer ijkMediaPlayer;
+    private SeekBar seek_bar;
+    private long index = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ijkplayer_test);
+        seek_bar = findViewById(R.id.seek_bar);
         texture_view = findViewById(R.id.texture_view);
         texture_view.setSurfaceTextureListener(new TextureView.SurfaceTextureListener() {
             @Override
@@ -46,6 +50,28 @@ public class IJKPlayerTestActivity extends AppCompatActivity {
 
             }
         });
+        seek_bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (fromUser && null != ijkMediaPlayer && index % 10 == 0) {
+                    if (ijkMediaPlayer.isPlaying()) {
+                        ijkMediaPlayer.pause();
+                    }
+                    ijkMediaPlayer.seekTo((long) (1.0f * progress / seekBar.getMax() * ijkMediaPlayer.getDuration()));
+                }
+                index++;
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                ijkMediaPlayer.seekTo((long) (1.0f * seekBar.getProgress() / seekBar.getMax() * ijkMediaPlayer.getDuration()));
+            }
+        });
     }
 
     public void startPlay(View view) {
@@ -60,6 +86,7 @@ public class IJKPlayerTestActivity extends AppCompatActivity {
         }
         try {
             ijkMediaPlayer.setSurface(surface);
+            ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "mediacodec", 1);
             ijkMediaPlayer.setDataSource("/sdcard/bzmedia/testvideo.mp4");
             ijkMediaPlayer.setOnPreparedListener(new IMediaPlayer.OnPreparedListener() {
                 @Override

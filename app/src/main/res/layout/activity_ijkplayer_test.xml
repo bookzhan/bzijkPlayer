@@ -5,8 +5,17 @@
 
     <TextureView
         android:id="@+id/texture_view"
+        android:layout_width="1280px"
+        android:layout_height="720px"
+        android:rotation="90" />
+
+    <SeekBar
+        android:id="@+id/seek_bar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="120dp"
+        android:max="100" />
 
     <Button
         android:layout_width="wrap_content"
@@ -15,4 +24,5 @@
         android:layout_margin="30dp"
         android:onClick="startPlay"
         android:text="startPlay" />
+
 </RelativeLayout>
